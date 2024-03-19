@@ -60,6 +60,7 @@ async function signup(req, res) {
       const token = createJWT(user);
       res.json({ token }); // set('toJSON',) in user model is being called, and deleting the users password from the token
     } catch (err) {
+      console.log(err)
       // Probably a duplicate email
       res.status(400).json(err);
     }

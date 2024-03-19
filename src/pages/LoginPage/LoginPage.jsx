@@ -2,8 +2,7 @@ import React from "react";
 import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { useState } from "react";
-
-import { Link, useNavigate } from "react-router-dom";
+import PageHeader  from "../../components/Header/Header";
 
 import {
   Button,
@@ -52,6 +51,8 @@ export default function LoginPage({ handleSignUpOrLogin }) {
   }
 
   return (
+    <>
+    <PageHeader />  
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="purple" textAlign="center">
@@ -87,5 +88,5 @@ export default function LoginPage({ handleSignUpOrLogin }) {
         </Form>
       </Grid.Column>
     </Grid>
-  );
+ </> );
 }
