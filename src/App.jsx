@@ -1,14 +1,14 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { useState } from 'react'
-import Form from "./components/Form/Form";
+import NookPage from "./pages/NookPage/NookPage";
 import "./App.css";
-
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 // ANY component that is rendered by a route, should be stored in the 
 // pages folder. Every page is like an app component
 import userService from "./utils/userService";
 import PageHeader from "./components/Header/Header";  
+import NewStoryPage from "./pages/NewStoryPage/NewStoryPage";
 function App() {
  
   
@@ -21,6 +21,27 @@ function App() {
     // in order to get the token sent back from express and store the decoded token in the state
     setUser(userService.getUser())
   }
+  function logout() {
+    console.log("happening");
+    userService.logout();
+    setUser(null);
+  }
+
+  if (!user) {
+    return (
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+        />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    );
+  }
   return (
     <>
     <PageHeader />
@@ -28,15 +49,17 @@ function App() {
 
     
 
- 
+    
+
+    
       
  
     <Routes>
       <Route path="/" element={<h2 >Home Page</h2>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
- 
-    </Routes>
+      <Route path='/new-story' element={<NewStoryPage />} />
+      <Route path="/nook-page" element={<NookPage />} />    </Routes>
     </>
   );
 }
