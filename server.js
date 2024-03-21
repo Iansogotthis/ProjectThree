@@ -30,6 +30,7 @@ app.use(require("./config/auth"));
 app.use("/api/users", userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/stories', storiesRouter);
+
 // "catch all" route
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

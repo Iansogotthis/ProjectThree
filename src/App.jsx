@@ -10,6 +10,8 @@ import userService from "./utils/userService";
 import PageHeader from "./components/Header/Header";  
 import NewStoryPage from "./pages/NewStoryPage/NewStoryPage";
 import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
+import RandomStoryPage from "./pages/Stories/Stories";  
+
 function App() {
  
   
@@ -62,6 +64,9 @@ function App() {
       <Route path='/new-story' element={<NewStoryPage />} />
       <Route path="/nook-page" element={<NookPage />} />   
       <Route path="/story/:id" element={<SingleStoryPage user={user} />} />
+      <Route path="/stories" element={<RandomStoryPage />} />
+      <Route path="*" element={<h2>Not Found</h2>} />
+
        </Routes>
     </>
   );
