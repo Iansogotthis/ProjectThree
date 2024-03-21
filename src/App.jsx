@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import userService from "./utils/userService";
 import PageHeader from "./components/Header/Header";  
 import NewStoryPage from "./pages/NewStoryPage/NewStoryPage";
+import SingleStoryPage from "./pages/SingleStoryPage/SingleStoryPage";
 function App() {
  
   
@@ -59,7 +60,9 @@ function App() {
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path='/new-story' element={<NewStoryPage />} />
-      <Route path="/nook-page" element={<NookPage />} />    </Routes>
+      <Route path="/nook-page" element={<NookPage />} />   
+      <Route path="/story/:id" element={<SingleStoryPage user={user} />} />
+       </Routes>
     </>
   );
 }
