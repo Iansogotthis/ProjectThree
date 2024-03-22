@@ -1,11 +1,41 @@
 const StoryModel = require("../models/Story");
+ 
 
 module.exports = {
   create,
   index,
   show,
   delete: deleteStory,
+  createComment,
 }
+
+async function createComment(req, res)  {
+  try {
+    // Create a new comment
+    const comment = new Comment({
+      user: req.user._id,
+      comment: req.body.comment,
+    });
+
+    // Save the comment
+    await comment.save();
+
+    // Find the story by id and add the comment
+    const story = await Story.findById(req.params.storyId);
+    story.comments.push(comment._id);
+
+    // Save the story
+    await story.save();
+
+    res.status(201).json({
+      message: 'Comment created successfully',
+      comment,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while creating the comment' });
+  }
+};
+
 async function deleteStory(req, res){
 	try {
 		// find the story by ID
@@ -93,3 +123,4 @@ async function index(req, res) {
     res.json({ error: err });
   }
 }
+
