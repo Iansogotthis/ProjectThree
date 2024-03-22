@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import tokenService from '../../utils/tokenService';
 
-export default function NewComment({user}) {
+export default function NewComment({user, addComment}) {
   const [state, setState] = useState({
   
-    user: '',
+    
     comment: '',
   });
 
@@ -16,26 +16,16 @@ export default function NewComment({user}) {
   };
 
   console.log(user);
-
-
-
-  async function handleSubmit(e){
+ 
+  function handleSubmit(e){
     e.preventDefault()
-    console.log("what were looking for")
-    try{
-    const response = await fetch(`/api/stories/${id}`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        
-        Authorization: "Bearer " + tokenService.getToken() //
-      },
-      body: JSON.stringify(state)
-    })
-  } catch(err){
-    console.log(err)
-  } 
+    addComment(state)
 }
+
+
+
+ 
+
   return (
     <form onSubmit={handleSubmit}>
       

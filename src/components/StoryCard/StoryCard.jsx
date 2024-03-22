@@ -3,6 +3,7 @@ import "./StoryCard.css";
 import { Link } from "react-router-dom";
 
 export default function StoryCard({ story, onDelete, onLike }) {
+  
   return (
     <div className="story-card">
       <Link to={`/story/${story._id}`}>

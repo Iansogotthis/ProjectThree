@@ -37,14 +37,32 @@ export default function SingleStoryPage(props) {
       console.log("CHECK YOUR SERVER TERMINAL!!!!");
     }
   }
-
+  async function addComment(state){
+  
+    console.log("what were looking for")
+    try{
+    const response = await fetch(`/api/stories/${id}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        
+        Authorization: "Bearer " + tokenService.getToken() //
+      },
+      body: JSON.stringify(state)
+    })
+    const data = await response.json()
+    fetchStory()
+  } catch(err){
+    console.log(err)
+  } 
+  }
   if (!story) return <h1>Loading...</h1>;
 
   return (
     <div className="single-story-page">
       <h1>Story Detail Page</h1>
-      <StoryCard story={story} onDelete={onDelete} />
-      <NewComment user={props.user} />
+      <StoryCard story={story} onDelete={onDelete}  />
+      <NewComment user={props.user} addComment={addComment} />
     </div>
   );
 }
