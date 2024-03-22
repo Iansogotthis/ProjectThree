@@ -48,8 +48,8 @@ function App() {
   return (
     <>
     <PageHeader />
-    <h1>Welcome to the App</h1>
-
+    <h1 style={{ color: 'Grey', fontSize: '30px', textAlign: 'center', fontFamily: 'Bookman Oldstyle' }}>Welcome to Vibetime</h1>
+    <h2 style={{ color: 'Grey', fontSize: '20px', textAlign: 'center', fontFamily: 'Bookman Oldstyle' }}> Stories that help us feel </h2>
     
 
     

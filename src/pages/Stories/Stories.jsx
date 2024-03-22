@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Stories.css';
 
 export default function RandomStoryPage() {
   const [story, setStory] = useState(null);
@@ -10,8 +11,10 @@ export default function RandomStoryPage() {
   };
 
   return (
-    <div>
-      <button onClick={fetchRandomStory}>Get Random Story</button>
+    <div className="container">
+      <div className="button-container">
+        <button onClick={fetchRandomStory}>Get Random Story</button>
+      </div>
       {story && (
         <div>
           <h2>{story.title}</h2>
