@@ -23,10 +23,10 @@ export default function StoryCard({ story, onDelete, onLike }) {
       
       <h3>Comments:</h3>
       {story.comments.map((comment, index) => (
-        <div key={index}>
-          <p>{comment.user}</p>
-          <p>{comment.comment}</p>
-          <p>{comment.posted}</p>
+        <div key={index} className="comment">
+          <p className="comment-user">{comment.user}</p>
+          <p className="comment-text">{comment.comment}</p>
+          <p className="comment-date">{comment.posted}</p>
         </div>
       ))}
     </div>
