@@ -5,7 +5,7 @@ export default function RandomStoryPage() {
   const [story, setStory] = useState(null);
 
   const fetchRandomStory = async () => {
-    const response = await fetch('/api/stories'); 
+    const response = await fetch('/api/stories/random'); 
     const data = await response.json();
     setStory(data);
   };

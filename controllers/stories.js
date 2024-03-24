@@ -7,6 +7,7 @@ module.exports = {
   show,
   delete: deleteStory,
   createComment,
+  getRandomStory,
 }
 
 async function createComment(req, res)  {
@@ -51,15 +52,16 @@ const s3 = new S3();
 
 const BUCKET_NAME = process.env.S3_BUCKET;
 
-// async function getRandomStory (req, res)  {
-//   try {
-//     const story = await Story.aggregate([{ $sample: { size: 1 } }]);
-//     res.json(story[0]);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// };
+ async function getRandomStory (req, res)  {
+   try {
+    const stories = await StoryModel.find({})
+    const randomIdx = Math.floor(Math.random()*stories.length)
+    res.json(stories[randomIdx]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 async function show(req, res) {
   try {
