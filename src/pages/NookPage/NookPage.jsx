@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StoryCard from "../../components/StoryCard/StoryCard";
 import tokenService from "../../utils/tokenService";
+import "./NookPage.css"
 export default function NookPage() {
   const [stories, setStories] = useState([]);
 
@@ -25,7 +26,7 @@ export default function NookPage() {
   }
 
   return (
-    <div>
+    <div className = "nook-page">
       <h1>Reading Nook</h1>
       {stories.map((story, index) => (
         <StoryCard key={index} story={story} />

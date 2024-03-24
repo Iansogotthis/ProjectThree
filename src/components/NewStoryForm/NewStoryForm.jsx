@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./NewStoryForm.css";
 import tokenService from "../../utils/tokenService";
+import {useNavigate} from "react-router-dom"
 
 export default function NewStoryForm() {
+  const navigate = useNavigate();
   const [state, setState] = useState({
     title: "",
     author: "",
@@ -33,6 +35,7 @@ export default function NewStoryForm() {
       body: JSON.stringify(state)
     })
     const data = await response.json()
+    navigate('/nook-page')
   } catch(err){
     console.log(err)
   }

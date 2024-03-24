@@ -1,11 +1,34 @@
 const StoryModel = require("../models/Story");
+ 
 
 module.exports = {
   create,
   index,
   show,
   delete: deleteStory,
+  createComment,
+  getRandomStory,
 }
+
+async function createComment(req, res)  {
+  try {
+    // Create a new comment
+  
+
+    // Find the story by id and add the comment
+    const story = await StoryModel.findById(req.params.id);
+   
+          story.comments.push({user: req.user.username, comment: req.body.comment}); //mutating a document
+          await story.save()// save it
+          res.status(201).json({data: 'comment added'})
+      } catch(err){
+         
+          console.log(err)
+          res.status(400).json({err})
+      }
+      
+  }
+
 async function deleteStory(req, res){
 	try {
 		// find the story by ID
@@ -29,15 +52,16 @@ const s3 = new S3();
 
 const BUCKET_NAME = process.env.S3_BUCKET;
 
-// async function getRandomStory (req, res)  {
-//   try {
-//     const story = await Story.aggregate([{ $sample: { size: 1 } }]);
-//     res.json(story[0]);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: 'Server error' });
-//   }
-// };
+ async function getRandomStory (req, res)  {
+   try {
+    const stories = await StoryModel.find({})
+    const randomIdx = Math.floor(Math.random()*stories.length)
+    res.json(stories[randomIdx]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 async function show(req, res) {
   try {
@@ -93,3 +117,4 @@ async function index(req, res) {
     res.json({ error: err });
   }
 }
+
