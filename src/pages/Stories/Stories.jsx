@@ -16,9 +16,9 @@ export default function RandomStoryPage() {
         <button onClick={fetchRandomStory}>Get Random Story</button>
       </div>
       {story && (
-        <div>
-          <h2>{story.title}</h2>
-          <p>{story.story}</p>
+        <div className="story-container">
+          <h2 className="story-title">{story.title}</h2>
+          <p className="story-text">{story.story}</p>
         </div>
       )}
     </div>
